@@ -11,7 +11,7 @@ setup(
     long_description_content_type="text/markdown",
     author="VibeScan Contributors",
     author_email="",
-    url="https://github.com/yourusername/vibescan",
+    url="https://github.com/AbinVarghexe/vibescan",
     packages=find_packages(),
     install_requires=[
         "requests>=2.25.0",
@@ -48,7 +48,7 @@ setup(
     python_requires=">=3.7",
     keywords="security ai slopsquatting hallucination dependencies npm pypi",
     project_urls={
-        "Bug Reports": "https://github.com/yourusername/vibescan/issues",
-        "Source": "https://github.com/yourusername/vibescan",
+        "Bug Reports": "https://github.com/AbinVarghexe/vibescan/issues",
+        "Source": "https://github.com/AbinVarghexe/vibescan",
     },
 )
