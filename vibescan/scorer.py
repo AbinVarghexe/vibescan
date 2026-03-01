@@ -38,6 +38,15 @@ def calculate_risk(registry_data, typo_data):
         elif age_days < 30:
             score += 10
             reasons.append(f"Package is relatively new (Created {age_days} days ago)")
+    
+    # 4. Low Download Count Check (for npm packages)
+    downloads = registry_data.get('downloads', 0)
+    if registry_data.get('exists') is True and downloads < 100:
+        score += 20
+        reasons.append(f"Very low download count ({downloads} in last month) - suspicious popularity")
+    elif downloads > 0 and downloads < 1000:
+        score += 5
+        reasons.append(f"Low download count ({downloads} in last month)")
 
     # Cap at 100
     score = min(score, 100)

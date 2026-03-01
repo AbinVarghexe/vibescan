@@ -27,17 +27,17 @@ def report_results(results):
         else:
             safe.append(res)
 
-    print(f"{Fore.GREEN}{Style.BRIGHT}✓ {len(safe)} Safe Dependencies")
+    print(f"{Fore.GREEN}{Style.BRIGHT}OK {len(safe)} Safe Dependencies")
     
     if suspicious:
-        print(f"\n{Fore.YELLOW}{Style.BRIGHT}⚠ {len(suspicious)} Suspicious Dependencies (Review Recommended)")
+        print(f"\n{Fore.YELLOW}{Style.BRIGHT}!! {len(suspicious)} Suspicious Dependencies (Review Recommended)")
         for s in suspicious:
             print(f"  - {Fore.YELLOW}{s['name']}{Style.RESET_ALL} ({s['ecosystem']}) - Score: {s['score']}/100")
             for r in s['reasons']:
                 print(f"    * {r}")
                 
     if critical:
-        print(f"\n{Fore.RED}{Style.BRIGHT}❌ {len(critical)} Critical Risk Dependencies (Action Required!)")
+        print(f"\n{Fore.RED}{Style.BRIGHT}XX {len(critical)} Critical Risk Dependencies (Action Required!)")
         for c in critical:
             print(f"  - {Fore.RED}{c['name']}{Style.RESET_ALL} ({c['ecosystem']}) - Score: {c['score']}/100")
             for r in c['reasons']:
