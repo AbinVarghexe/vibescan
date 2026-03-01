@@ -1,5 +1,5 @@
 repos:
-  - repo: https://github.com/yourname/vibescan # Replace with actual repo URL when published
+  - repo: https://github.com/AbinVarghexe/vibescan
     rev: v0.1.0
     hooks:
       - id: vibescan
