@@ -7,7 +7,7 @@
     "vibescan": "index.js"
   },
   "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "security",
@@ -15,8 +15,20 @@
     "slopsquatting",
     "hallucination",
     "npm",
-    "dependencies"
+    "dependencies",
+    "vibescan"
   ],
-  "author": "Your Name",
-  "license": "ISC"
+  "author": "VibeScan Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/vibescan.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/vibescan/issues"
+  },
+  "homepage": "https://github.com/yourusername/vibescan#readme",
+  "engines": {
+    "node": ">=12.0.0"
+  }
 }

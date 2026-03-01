@@ -20,7 +20,7 @@ def test_calculate_risk_typosquat_and_hallucinated():
 def test_calculate_risk_new_package():
     # Package created 2 days ago
     two_days_ago = datetime.now(timezone.utc) - timedelta(days=2)
-    registry_data = {'exists': True, 'created': two_days_ago}
+    registry_data = {'exists': True, 'created': two_days_ago, 'downloads': 5000}
     typo_data = {'is_typo': False, 'similar_to': None, 'score': 0.0}
     
     score, reasons = calculate_risk(registry_data, typo_data)
@@ -30,7 +30,7 @@ def test_calculate_risk_new_package():
 def test_calculate_risk_safe():
     # Package created 5 years ago
     old_date = datetime.now(timezone.utc) - timedelta(days=5*365)
-    registry_data = {'exists': True, 'created': old_date}
+    registry_data = {'exists': True, 'created': old_date, 'downloads': 1000000}
     typo_data = {'is_typo': False, 'similar_to': None, 'score': 0.0}
     
     score, reasons = calculate_risk(registry_data, typo_data)

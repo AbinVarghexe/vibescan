@@ -1,4 +1,4 @@
 pandas==2.0.0
-reqeusts==2.25.1
+requeusts==2.25.1
 Django>=4.0.0
 never-heard-of-this-package-ai-made-it-up==5.5
