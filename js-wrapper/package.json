@@ -1,0 +1,22 @@
+{
+  "name": "vibescan-js",
+  "version": "0.1.0",
+  "description": "A pre-publish security analysis tool to detect AI hallucinated dependencies and slopsquatting.",
+  "main": "index.js",
+  "bin": {
+    "vibescan": "index.js"
+  },
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "keywords": [
+    "security",
+    "ai",
+    "slopsquatting",
+    "hallucination",
+    "npm",
+    "dependencies"
+  ],
+  "author": "Your Name",
+  "license": "ISC"
+}

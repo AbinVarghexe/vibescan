@@ -1,0 +1,11 @@
+{
+  "name": "dummy_project",
+  "version": "1.0.0",
+  "dependencies": {
+    "reactt": "^18.0.0",
+    "crypto-secure-hash-v2-hallucinated": "1.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}

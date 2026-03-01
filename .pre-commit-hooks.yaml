@@ -1,0 +1,11 @@
+repos:
+  - repo: https://github.com/yourname/vibescan # Replace with actual repo URL when published
+    rev: v0.1.0
+    hooks:
+      - id: vibescan
+        name: VibeScan Security Check
+        entry: vibescan
+        language: python
+        types: [json, text]
+        files: '^(package\.json|requirements\.txt|pyproject\.toml)$'
+        pass_filenames: false

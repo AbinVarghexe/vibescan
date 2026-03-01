@@ -1,0 +1,25 @@
+name: VibeScan Security Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install VibeScan
+        run: |
+          pip install git+https://github.com/yourname/vibescan.git@main
+
+      - name: Run VibeScan Analysis
+        run: |
+          # Fails the build if critical AI hallucination/slopsquatting risks are found
+          vibescan check .
