@@ -1,0 +1,4 @@
+requests>=2.25.0
+colorama>=0.4.4
+packaging>=21.3
+streamlit>=1.28.0

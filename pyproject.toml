@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vibescan"
+version = "0.1.0"
+description = "A pre-publish security analysis tool to detect AI hallucinated dependencies and slopsquatting"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+    {name = "VibeScan Contributors"}
+]
+keywords = ["security", "ai", "slopsquatting", "hallucination", "dependencies", "npm", "pypi"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Security",
+    "Topic :: Software Development :: Quality Assurance",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "requests>=2.25.0",
+    "colorama>=0.4.4",
+    "packaging>=21.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-mock>=3.10.0",
+    "responses>=0.20.0",
+]
+web = [
+    "flask>=2.3.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/vibescan"
+"Bug Tracker" = "https://github.com/yourusername/vibescan/issues"
+Documentation = "https://github.com/yourusername/vibescan#readme"
+"Source Code" = "https://github.com/yourusername/vibescan"
+
+[project.scripts]
+vibescan = "vibescan.cli:main"
+
+[tool.setuptools]
+packages = ["vibescan", "vibescan.checkers"]
+
+[tool.setuptools.package-data]
+vibescan = ["py.typed"]
