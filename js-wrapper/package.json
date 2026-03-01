@@ -22,12 +22,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/vibescan.git"
+    "url": "https://github.com/AbinVarghexe/vibescan.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/vibescan/issues"
+    "url": "https://github.com/AbinVarghexe/vibescan/issues"
   },
-  "homepage": "https://github.com/yourusername/vibescan#readme",
+  "homepage": "https://github.com/AbinVarghexe/vibescan#readme",
   "engines": {
     "node": ">=12.0.0"
   }
