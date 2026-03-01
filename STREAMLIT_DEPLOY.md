@@ -29,7 +29,7 @@ The app will open at `http://localhost:8501`
 
 6. **Click "Deploy"**
 
-That's it! Your app will be live at: `https://abinvarghexe-vibescan.streamlit.app/`
+That's it! Your app is live at: `https://vibescen.streamlit.app/`
 
 ## ✨ Features
 

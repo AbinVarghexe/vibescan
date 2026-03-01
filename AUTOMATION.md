@@ -95,7 +95,7 @@ GitHub Actions will automatically:
 
 6. **Your app will be live at**:
    ```
-   https://abinvarghexe-vibescan.streamlit.app
+   https://vibescen.streamlit.app
    ```
 
 **Benefits**:
