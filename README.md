@@ -15,6 +15,12 @@ As developers increasingly rely on LLM code generators, the risk of introducing 
 - **🔄 Cross-Ecosystem**: Supports both Python and Node.js projects
 - **🎨 Beautiful Output**: Color-coded results with clear explanations
 
+## 🌐 Live Web App
+
+**Try it now**: https://vibescen.streamlit.app/
+
+No installation needed - just upload your `package.json` or `requirements.txt`!
+
 ## 📦 Installation
 
 ### Python (PyPI)
