@@ -5,7 +5,7 @@ vibescan/
 
 ## 🎯 Quick Access
 
-- **Web App**: https://abinvarghexe-vibescan.streamlit.app (Deploy via Streamlit Cloud)
+- **Web App**: https://vibescen.streamlit.app (Live on Streamlit Cloud)
 - **PyPI**: https://pypi.org/project/vibescan/
 - **npm**: https://www.npmjs.com/package/vibescan-js
 - **GitHub**: https://github.com/AbinVarghexe/vibescan
@@ -13,7 +13,7 @@ vibescan/
 ## 🚀 Quick Start
 
 ### Use the Web App (Easiest)
-1. Visit: https://abinvarghexe-vibescan.streamlit.app
+1. Visit: https://vibescen.streamlit.app
 2. Upload your `package.json` or `requirements.txt`
 3. Get instant security analysis!
 
