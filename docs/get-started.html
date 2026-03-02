@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - VibeScan Docs</title>
+    
+    <!-- Material Design Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/google/material-design-icons/master/png/action/search/materialicons/24dp/1x/baseline_search_white_24dp.png">
+    
+    <style>
+        /* Syntax Highlighting */
+        pre {
+            background-color: #1e1e1e;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            overflow-x: auto;
+            margin: 16px 0 32px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            color: #d4d4d4;
+        }
+        
+        .code-comment { color: #6a9955; }
+        .code-cmd { color: #dcdcaa; }
+        .code-arg { color: #9cdcfe; }
+    </style>
+</head>
+<body class="dark-theme doc-layout">
+
+    <!-- Top App Bar -->
+    <header class="top-app-bar">
+        <div class="container app-bar-content">
+            <div class="logo-section">
+                <a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+                    <span class="material-icons logo-icon">security</span>
+                    <span class="logo-text">VibeScan</span>
+                </a>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="https://github.com/AbinVarghexe/vibescan/releases" class="nav-link">Get v0.1.0</a>
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="get-started.html" class="nav-link" style="color: var(--md-sys-color-on-surface);">Docs</a>
+                <a href="https://github.com/AbinVarghexe/vibescan" class="icon-link" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="doc-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="doc-sidebar">
+            <div class="nav-group">
+                <div class="nav-group-title">Getting Started</div>
+                <a href="#introduction" class="sidebar-link active">
+                    <span>Introduction</span>
+                </a>
+                <a href="#installation" class="sidebar-link">
+                    <span>Installation</span>
+                </a>
+                <a href="#usage" class="sidebar-link">
+                    <span>Basic Usage</span>
+                </a>
+            </div>
+            
+            <div class="nav-group">
+                <div class="nav-group-title">Advanced</div>
+                <a href="#configuration" class="sidebar-link">
+                    <span>Configuration</span>
+                </a>
+                <a href="#cicd" class="sidebar-link">
+                    <span>CI/CD Integration</span>
+                    <span class="material-icons chevron">chevron_right</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Documentation Content -->
+        <main class="doc-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> &nbsp;/&nbsp; Docs &nbsp;/&nbsp; Getting Started
+            </div>
+            
+            <h1 class="page-title" id="introduction">Introduction</h1>
+            <p class="page-lead">
+                VibeScan is your first line of defense against AI hallucinations and supply chain attacks.
+            </p>
+            
+            <p style="color: #ccc; margin-bottom: 24px;">
+                As developers increasingly rely on LLM code generators (ChatGPT, Copilot, Claude), the risk of introducing non-existent ("hallucinated") or malicious packages has skyrocketed. VibeScan automatically detects these issues before you install them.
+            </p>
+
+            <hr class="doc-divider">
+
+            <h2 class="section-title" id="installation">Installation</h2>
+            <p style="color: #ccc; margin-bottom: 16px;">
+                VibeScan is available as a Python package. It's recommended to install it globally or in your virtual environment.
+            </p>
+
+            <h3>From PyPI</h3>
+            <pre><span class="code-comment"># Install using pip</span>
+<span class="code-cmd">pip</span> install <span class="code-arg">vibescan</span></pre>
+
+            <h3>From Source</h3>
+            <pre><span class="code-comment"># Clone the repository</span>
+<span class="code-cmd">git</span> clone <span class="code-arg">https://github.com/AbinVarghexe/vibescan.git</span>
+<span class="code-cmd">cd</span> <span class="code-arg">vibescan</span>
+
+<span class="code-comment"># Install in editable mode</span>
+<span class="code-cmd">pip</span> install <span class="code-arg">-e .</span></pre>
+
+            <hr class="doc-divider">
+
+            <h2 class="section-title" id="usage">Basic Usage</h2>
+            <p style="color: #ccc;">
+                Navigate to your project directory (where your <code>package.json</code> or <code>requirements.txt</code> is located) and run:
+            </p>
+            
+            <pre><span class="code-comment"># Scan the current directory</span>
+<span class="code-cmd">vibescan</span></pre>
+
+            <p style="color: #ccc;">
+                To scan a specific directory path:
+            </p>
+
+            <pre><span class="code-cmd">vibescan</span> <span class="code-arg">/path/to/your/project</span></pre>
+            
+            <p style="color: #ccc;">
+                To enable verbose debug logging:
+            </p>
+            
+            <pre><span class="code-cmd">vibescan</span> <span class="code-arg">--debug</span></pre>
+
+            <hr class="doc-divider">
+            
+            <h2 class="section-title" id="cicd">CI/CD Integration</h2>
+            <p style="color: #ccc; margin-bottom: 24px;">
+                Automate your security checks by adding VibeScan to your GitHub Actions pipeline.
+            </p>
+            
+            <pre>name: Security Scan
+on: [push, pull_request]
+
+jobs:
+  vibescan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install VibeScan
+        run: pip install vibescan
+      - name: Run Scan
+        run: vibescan</pre>
+
+            <div style="height: 100px;"></div>
+        </main>
+    </div>
+
+    <script>
+        // Simple logic to handle active state on scroll
+        const links = document.querySelectorAll('.sidebar-link');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                links.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
