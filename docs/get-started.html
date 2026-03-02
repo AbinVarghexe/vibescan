@@ -55,10 +55,10 @@
                 
                 <div class="nav-group">
                     <h4 class="nav-group-title">Guides</h4>
-                    <a href="getting-started.html" class="sidebar-link active">Getting started</a>
-                    <a href="#" class="sidebar-link">Configuration <span class="material-icons chevron">chevron_right</span></a>
-                    <a href="#" class="sidebar-link">CI/CD Integration</a>
-                    <a href="#" class="sidebar-link">Architecture</a>
+                    <a href="#installation-guide" class="sidebar-link active">Getting started</a>
+                    <a href="#configuration" class="sidebar-link">Configuration</a>
+                    <a href="#cicd-integration" class="sidebar-link">CI/CD Integration</a>
+                    <a href="#architecture" class="sidebar-link">Architecture</a>
                 </div>
 
                 <div class="nav-group">
@@ -200,6 +200,328 @@ vibescan check /path/to/project</code></pre>
                     <strong>Tip:</strong> If VibeScan detects critical risks (score &ge; 60), it exits with code <code>1</code>, purposefully failing the pipeline and protecting your production environment.
                 </p>
 
+                <hr class="doc-divider">
+
+                <!-- ============ CONFIGURATION ============ -->
+                <h2 id="configuration" class="section-title">Configuration</h2>
+                <p>VibeScan works out of the box with sensible defaults. You can customize its behavior using CLI flags.</p>
+
+                <h3 id="cli-flags">CLI Flags</h3>
+                <table class="doc-table">
+                    <thead>
+                        <tr>
+                            <th>Flag</th>
+                            <th>Description</th>
+                            <th>Default</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>path</code></td>
+                            <td>Directory to scan for dependency files</td>
+                            <td><code>.</code> (current directory)</td>
+                        </tr>
+                        <tr>
+                            <td><code>--debug</code></td>
+                            <td>Enable verbose debug output during scanning</td>
+                            <td>Off</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang">Terminal</span>
+                        <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy to clipboard">
+                            <span class="material-icons">content_copy</span>
+                            <span class="copy-label">Copy</span>
+                        </button>
+                    </div>
+                    <pre><code># Scan current directory (default)
+vibescan
+
+# Scan a specific project
+vibescan /path/to/project
+
+# Enable debug logging
+vibescan --debug</code></pre>
+                </div>
+
+                <h3 id="risk-scoring">Risk Scoring Thresholds</h3>
+                <p>VibeScan categorizes dependencies into three risk levels based on the calculated score:</p>
+                <table class="doc-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Score Range</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span style="color: var(--terminal-green); font-weight: 600;">Safe</span></td>
+                            <td>0 &ndash; 9</td>
+                            <td>No action needed</td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: var(--terminal-yellow); font-weight: 600;">Suspicious</span></td>
+                            <td>10 &ndash; 59</td>
+                            <td>Review recommended</td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: var(--terminal-red); font-weight: 600;">Critical</span></td>
+                            <td>60 &ndash; 100</td>
+                            <td>Exits with code 1 &mdash; blocks pipeline</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="scoring-factors">Scoring Factors</h3>
+                <table class="doc-table">
+                    <thead>
+                        <tr>
+                            <th>Check</th>
+                            <th>Score Impact</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Package not in registry</td>
+                            <td><code>+100</code></td>
+                            <td>AI hallucination / slopsquat target</td>
+                        </tr>
+                        <tr>
+                            <td>Typosquat detected</td>
+                            <td><code>+60</code></td>
+                            <td>Name similar to a popular package</td>
+                        </tr>
+                        <tr>
+                            <td>Created &lt; 7 days ago</td>
+                            <td><code>+40</code></td>
+                            <td>Suspiciously new package</td>
+                        </tr>
+                        <tr>
+                            <td>Created &lt; 30 days ago</td>
+                            <td><code>+10</code></td>
+                            <td>Relatively new package</td>
+                        </tr>
+                        <tr>
+                            <td>Downloads &lt; 100/month</td>
+                            <td><code>+20</code></td>
+                            <td>Very low popularity</td>
+                        </tr>
+                        <tr>
+                            <td>Downloads &lt; 1000/month</td>
+                            <td><code>+5</code></td>
+                            <td>Low popularity</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="supported-files">Supported Dependency Files</h3>
+                <table class="doc-table">
+                    <thead>
+                        <tr>
+                            <th>File</th>
+                            <th>Ecosystem</th>
+                            <th>Parsed Fields</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>package.json</code></td>
+                            <td>npm</td>
+                            <td><code>dependencies</code>, <code>devDependencies</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>requirements.txt</code></td>
+                            <td>PyPI</td>
+                            <td>All non-comment lines with package names</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <hr class="doc-divider">
+
+                <!-- ============ CI/CD INTEGRATION ============ -->
+                <h2 id="cicd-integration" class="section-title">CI/CD Integration</h2>
+                <p>VibeScan is designed to run as a gate in your deployment pipelines. Any critical finding (score &ge; 60) causes the process to exit with code <code>1</code>, blocking the build.</p>
+
+                <h3 id="github-actions">GitHub Actions</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang">.github/workflows/vibescan.yml</span>
+                        <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy to clipboard">
+                            <span class="material-icons">content_copy</span>
+                            <span class="copy-label">Copy</span>
+                        </button>
+                    </div>
+                    <pre><code>name: VibeScan Dependency Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  vibescan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install VibeScan
+        run: pip install vibescan
+      - name: Scan dependencies
+        run: vibescan check .</code></pre>
+                </div>
+
+                <h3 id="gitlab-ci">GitLab CI</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang">.gitlab-ci.yml</span>
+                        <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy to clipboard">
+                            <span class="material-icons">content_copy</span>
+                            <span class="copy-label">Copy</span>
+                        </button>
+                    </div>
+                    <pre><code>vibescan:
+  stage: test
+  image: python:3.11-slim
+  script:
+    - pip install vibescan
+    - vibescan check .</code></pre>
+                </div>
+
+                <h3 id="pre-commit-hook">Pre-Commit Hook</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang">.pre-commit-config.yaml</span>
+                        <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy to clipboard">
+                            <span class="material-icons">content_copy</span>
+                            <span class="copy-label">Copy</span>
+                        </button>
+                    </div>
+                    <pre><code>repos:
+  - repo: https://github.com/AbinVarghexe/vibescan
+    rev: v0.1.0
+    hooks:
+      - id: vibescan
+        name: VibeScan dependency check
+        entry: vibescan check .
+        language: python
+        pass_filenames: false</code></pre>
+                </div>
+
+                <h3 id="docker-ci">Docker</h3>
+                <p>Run VibeScan in any pipeline that supports Docker:</p>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang">Shell</span>
+                        <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy to clipboard">
+                            <span class="material-icons">content_copy</span>
+                            <span class="copy-label">Copy</span>
+                        </button>
+                    </div>
+                    <pre><code>docker run --rm -v $(pwd):/app vibescan/vibescan:latest</code></pre>
+                </div>
+
+                <p class="note-box">
+                    <strong>Tip:</strong> The exit code behavior makes VibeScan a drop-in gate for any CI system. If <em>any</em> dependency scores &ge; 60, the process returns exit code <code>1</code>.
+                </p>
+
+                <hr class="doc-divider">
+
+                <!-- ============ ARCHITECTURE ============ -->
+                <h2 id="architecture" class="section-title">Architecture</h2>
+                <p>VibeScan follows a simple modular pipeline. Each scan flows through four stages:</p>
+
+                <div class="arch-flow">
+                    <div class="arch-step">
+                        <span class="material-icons">description</span>
+                        <strong>Parsers</strong>
+                        <small>Read dependency files</small>
+                    </div>
+                    <span class="arch-arrow material-icons">arrow_forward</span>
+                    <div class="arch-step">
+                        <span class="material-icons">fact_check</span>
+                        <strong>Checkers</strong>
+                        <small>Query registries &amp; detect typos</small>
+                    </div>
+                    <span class="arch-arrow material-icons">arrow_forward</span>
+                    <div class="arch-step">
+                        <span class="material-icons">analytics</span>
+                        <strong>Scorer</strong>
+                        <small>Calculate risk 0&ndash;100</small>
+                    </div>
+                    <span class="arch-arrow material-icons">arrow_forward</span>
+                    <div class="arch-step">
+                        <span class="material-icons">summarize</span>
+                        <strong>Reporter</strong>
+                        <small>Print results &amp; set exit code</small>
+                    </div>
+                </div>
+
+                <h3 id="module-overview">Module Overview</h3>
+
+                <h4><code>cli.py</code> &mdash; Entry Point</h4>
+                <p>The CLI parses arguments, discovers <code>package.json</code> and <code>requirements.txt</code> in the target directory, and orchestrates the scan pipeline. It calls each module in sequence and exits with code <code>1</code> if critical issues are found.</p>
+
+                <h4><code>parsers.py</code> &mdash; Dependency Extraction</h4>
+                <p>Reads and normalizes dependency files into a unified format:</p>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang">Python</span>
+                        <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy to clipboard">
+                            <span class="material-icons">content_copy</span>
+                            <span class="copy-label">Copy</span>
+                        </button>
+                    </div>
+                    <pre><code># Each dependency is returned as:
+{"name": "requests", "version": "==2.31.0", "ecosystem": "pypi"}
+
+# Supported parsers:
+# - parse_package_json()  &rarr;  reads dependencies + devDependencies
+# - parse_requirements_txt()  &rarr;  reads all non-comment lines</code></pre>
+                </div>
+
+                <h4><code>checkers/</code> &mdash; Verification Layer</h4>
+                <p>Two checker modules validate each dependency:</p>
+                <ul style="margin: 12px 0 20px 24px; line-height: 2;">
+                    <li><strong>registry_checker.py</strong> &mdash; Queries npm (<code>registry.npmjs.org</code>) and PyPI (<code>pypi.org/pypi/</code>) APIs to verify package existence, creation date, and download counts.</li>
+                    <li><strong>typosquat_checker.py</strong> &mdash; Uses <code>difflib.SequenceMatcher</code> to compare package names against a curated list of popular packages. A similarity ratio &ge; 0.8 flags the dependency as a typosquat.</li>
+                </ul>
+
+                <h4><code>scorer.py</code> &mdash; Risk Calculation</h4>
+                <p>Aggregates signals from the checkers into a single 0&ndash;100 risk score. See the <a href="#scoring-factors">Scoring Factors</a> table above for the full breakdown.</p>
+
+                <h4><code>reporter.py</code> &mdash; Output &amp; Exit Code</h4>
+                <p>Groups results into <span style="color: var(--terminal-green);">Safe</span>, <span style="color: var(--terminal-yellow);">Suspicious</span>, and <span style="color: var(--terminal-red);">Critical</span> categories using colorized terminal output via <code>colorama</code>. Returns <code>False</code> if any critical packages exist, which causes the CLI to exit with code <code>1</code>.</p>
+
+                <h3 id="project-structure">Project Structure</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-lang">File Tree</span>
+                        <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy to clipboard">
+                            <span class="material-icons">content_copy</span>
+                            <span class="copy-label">Copy</span>
+                        </button>
+                    </div>
+                    <pre><code>vibescan/
+├── __init__.py             # Package init
+├── cli.py                  # CLI entry point (argparse)
+├── parsers.py              # package.json &amp; requirements.txt parsers
+├── scorer.py               # Risk score calculator (0-100)
+├── reporter.py             # Colorized terminal output
+└── checkers/
+    ├── __init__.py
+    ├── registry_checker.py # npm + PyPI API verification
+    └── typosquat_checker.py# Name similarity detection</code></pre>
+                </div>
+
             </article>
         </main>
 
@@ -214,9 +536,31 @@ vibescan check /path/to/project</code></pre>
                             <li><a href="#basic-usage" class="toc-sublink">Basic Usage</a></li>
                         </ul>
                     </li>
-                    <li><a href="#adding-series-to-your-library" class="toc-link">Additional setup</a>
+                    <li><a href="#adding-series-to-your-library" class="toc-link">Workflow</a>
                         <ul class="toc-sublist">
-                            <li><a href="#" class="toc-sublink">Implementing in Workflow</a></li>
+                            <li><a href="#adding-series-to-your-library" class="toc-sublink">Implementing in Workflow</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#configuration" class="toc-link">Configuration</a>
+                        <ul class="toc-sublist">
+                            <li><a href="#cli-flags" class="toc-sublink">CLI Flags</a></li>
+                            <li><a href="#risk-scoring" class="toc-sublink">Risk Scoring</a></li>
+                            <li><a href="#scoring-factors" class="toc-sublink">Scoring Factors</a></li>
+                            <li><a href="#supported-files" class="toc-sublink">Supported Files</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#cicd-integration" class="toc-link">CI/CD Integration</a>
+                        <ul class="toc-sublist">
+                            <li><a href="#github-actions" class="toc-sublink">GitHub Actions</a></li>
+                            <li><a href="#gitlab-ci" class="toc-sublink">GitLab CI</a></li>
+                            <li><a href="#pre-commit-hook" class="toc-sublink">Pre-Commit</a></li>
+                            <li><a href="#docker-ci" class="toc-sublink">Docker</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#architecture" class="toc-link">Architecture</a>
+                        <ul class="toc-sublist">
+                            <li><a href="#module-overview" class="toc-sublink">Module Overview</a></li>
+                            <li><a href="#project-structure" class="toc-sublink">Project Structure</a></li>
                         </ul>
                     </li>
                 </ul>
