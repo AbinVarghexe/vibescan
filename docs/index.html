@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeScan - AI Dependency Security Scanner</title>
+    
+    <!-- Material Design Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/google/material-design-icons/master/png/action/search/materialicons/24dp/1x/baseline_search_white_24dp.png">
+</head>
+<body class="dark-theme">
+
+    <!-- Top App Bar -->
+    <header class="top-app-bar">
+        <div class="container app-bar-content">
+            <div class="logo-section">
+                <span class="material-icons logo-icon">security</span>
+                <span class="logo-text">VibeScan</span>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="https://github.com/AbinVarghexe/vibescan/releases" class="nav-link">Get v0.1.0</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="https://github.com/AbinVarghexe/vibescan" class="nav-link">Docs</a>
+                <a href="https://github.com/AbinVarghexe/vibescan" class="icon-link" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">AI Security</div>
+                    <h1 class="hero-title">
+                        <span class="highlight-text">VibeScan</span><br>
+                        Secure your dependencies from AI hallucinations.
+                    </h1>
+                    <p class="hero-subtitle">
+                        Detect and prevent malicious packages, typosquatting, and AI-generated hallucinations in your Python and Node.js projects — faster than ever in your terminal.
+                    </p>
+                    
+                    <div class="hero-actions">
+                        <a href="https://github.com/AbinVarghexe/vibescan" class="btn btn-primary">
+                            Get Started
+                        </a>
+                        <a href="https://pypi.org/project/vibescan/" class="btn btn-secondary">
+                            Download
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <!-- CSS Terminal Mockup -->
+                    <div class="terminal-window elevation-4">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">user@vibescan:~</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="line"><span class="prompt">$</span> vibescan check .</div>
+                            <div class="line output">Scanning dependencies...</div>
+                            <div class="line output success">✓ requests (v2.31.0) - OK</div>
+                            <div class="line output success">✓ pandas (v2.1.0) - OK</div>
+                            <div class="line output error">✗ hallucinated-pkg (v0.0.0) - CRITICAL</div>
+                            <div class="line output warning">⚠ reqests (v2.31.0) - TYPOSQUAT DETECTED</div>
+                            <div class="line output info">Found 1 critical issue.</div>
+                            <div class="cursor">_</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="features-grid">
+                    <!-- Feature 1 -->
+                    <div class="feature-card elevation-1">
+                        <div class="feature-icon-wrapper">
+                            <span class="material-icons feature-icon">psychology</span>
+                        </div>
+                        <h3 class="feature-title">Hallucination Detection</h3>
+                        <p class="feature-desc">
+                            Automatically verifies if packages suggested by AI assistants actually exist in official registries (PyPI, npm).
+                        </p>
+                        <a href="#" class="feature-link">Learn more <span class="material-icons arrow">arrow_forward</span></a>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-card elevation-1">
+                        <div class="feature-icon-wrapper">
+                            <span class="material-icons feature-icon">spellcheck</span>
+                        </div>
+                        <h3 class="feature-title">Typosquatting Defense</h3>
+                        <p class="feature-desc">
+                            Protect your project from "slopsquatting" attacks by detecting malicious packages with similar names to popular libraries.
+                        </p>
+                        <a href="#" class="feature-link">View technique <span class="material-icons arrow">arrow_forward</span></a>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-card elevation-1">
+                        <div class="feature-icon-wrapper">
+                            <span class="material-icons feature-icon">bolt</span>
+                        </div>
+                        <h3 class="feature-title">Lightning Fast</h3>
+                        <p class="feature-desc">
+                            Runs locally in seconds. No need to upload your source code to external servers. Secure by design.
+                        </p>
+                        <a href="#" class="feature-link">See benchmarks <span class="material-icons arrow">arrow_forward</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/AbinVarghexe/vibescan/blob/main/LICENSE">Open-source MIT Licensed</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="footer-copyright">
+                Copyright © 2026 VibeScan Contributors
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
