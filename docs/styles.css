@@ -1,33 +1,50 @@
-:root {
-    /* Color Palette - Material Dark Theme (Default) */
+/* ===== Dark Theme (default) ===== */
+:root,
+body.dark-theme {
     --md-sys-color-background: #121212;
     --md-sys-color-surface: #1e1e1e;
     --md-sys-color-surface-variant: #2d2d2d;
     --md-sys-color-on-background: #e2e2e2;
     --md-sys-color-on-surface: #e2e2e2;
     --md-sys-color-on-surface-variant: #a0a0a0;
-    
-    /* Aniyomi-like Accent Color */
-    --md-sys-color-primary: #5c6bc0; /* Indigo 400 */
+
+    --md-sys-color-primary: #5c6bc0;
     --md-sys-color-primary-container: #3f51b5;
     --md-sys-color-on-primary: #ffffff;
-    
+
     --md-sys-color-secondary: #2d2d2d;
     --md-sys-color-on-secondary: #e2e2e2;
 
-    /* Backgrounds */
-    --bg-gradient: radial-gradient(circle at 50% 0%, #1e1e2e 0%, #121212 60%);
-    --surface-border: rgba(255, 255, 255, 0.08); /* Unified border color */
-    --app-bar-bg: rgba(18, 18, 18, 0.8);
-
-    /* Terminal Colors */
+    /* Terminal */
     --terminal-bg: #0a0a0a;
     --terminal-text: #f0f0f0;
     --terminal-green: #4caf50;
     --terminal-red: #f44336;
     --terminal-yellow: #ffeb3b;
     --terminal-blue: #2196f3;
-    --terminal-shadow: 0 0 100px rgba(92, 107, 192, 0.1);
+
+    /* Surfaces */
+    --app-bar-bg: rgba(18, 18, 18, 0.8);
+    --border-color: rgba(255, 255, 255, 0.05);
+    --hover-overlay: rgba(255, 255, 255, 0.08);
+    --card-border: rgba(255, 255, 255, 0.05);
+    --card-border-hover: rgba(255, 255, 255, 0.1);
+    --divider-color: rgba(255, 255, 255, 0.08);
+    --body-gradient-start: #1e1e2e;
+    --body-gradient-end: #121212;
+    --terminal-header-bg: #1a1a1a;
+    --terminal-border: #333;
+    --terminal-glow: rgba(92, 107, 192, 0.1);
+    --terminal-output: #ccc;
+    --terminal-title-color: #666;
+    --footer-copyright: #666;
+    --badge-bg: rgba(92, 107, 192, 0.15);
+    --icon-wrapper-bg: rgba(92, 107, 192, 0.1);
+    --btn-primary-shadow: rgba(92, 107, 192, 0.3);
+    --btn-primary-hover-shadow: rgba(92, 107, 192, 0.4);
+    --btn-primary-hover-bg: #4f5eb5;
+    --btn-secondary-hover-bg: #383838;
+    --card-hover-shadow: 0 8px 12px -4px rgba(0, 0, 0, 0.4);
 
     /* Elevation Shadows */
     --elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
@@ -35,51 +52,57 @@
     --elevation-4: 0px 4px 10px 4px rgba(0, 0, 0, 0.2), 0px 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
 
-[data-theme="light"] {
-    --md-sys-color-background: #fafafa;
+/* ===== Light Theme ===== */
+body.light-theme {
+    --md-sys-color-background: #f5f5f5;
     --md-sys-color-surface: #ffffff;
-    --md-sys-color-surface-variant: #f2f2f2;
-    --md-sys-color-on-background: #1b1b1f;
-    --md-sys-color-on-surface: #1b1b1f;
-    --md-sys-color-on-surface-variant: #444746;
-    
-    --md-sys-color-primary: #3f51b5; /* Indigo 500 */
-    --md-sys-color-primary-container: #e8eaf6;
+    --md-sys-color-surface-variant: #e8e8e8;
+    --md-sys-color-on-background: #1a1a1a;
+    --md-sys-color-on-surface: #1a1a1a;
+    --md-sys-color-on-surface-variant: #5f5f5f;
+
+    --md-sys-color-primary: #3f51b5;
+    --md-sys-color-primary-container: #5c6bc0;
     --md-sys-color-on-primary: #ffffff;
-    
-    --md-sys-color-secondary: #e0e2ec;
-    --md-sys-color-on-secondary: #1b1b1f;
 
-    --bg-gradient: radial-gradient(circle at 50% 0%, #e8eaf6 0%, #fafafa 60%);
-    --surface-border: rgba(0, 0, 0, 0.08);
-    --app-bar-bg: rgba(250, 250, 250, 0.8);
+    --md-sys-color-secondary: #e8e8e8;
+    --md-sys-color-on-secondary: #1a1a1a;
 
-    --terminal-bg: #1e1e1e; /* Keep terminal dark for contrast */
-    --terminal-shadow: 0 0 100px rgba(63, 81, 181, 0.15);
+    /* Terminal */
+    --terminal-bg: #1e1e1e;
+    --terminal-text: #f0f0f0;
+    --terminal-green: #388e3c;
+    --terminal-red: #d32f2f;
+    --terminal-yellow: #f9a825;
+    --terminal-blue: #1976d2;
 
-    /* Softer shadows for light mode */
-    --elevation-1: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    --elevation-2: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
-    --elevation-4: 0px 1px 3px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+    /* Surfaces */
+    --app-bar-bg: rgba(255, 255, 255, 0.85);
+    --border-color: rgba(0, 0, 0, 0.08);
+    --hover-overlay: rgba(0, 0, 0, 0.05);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --card-border-hover: rgba(0, 0, 0, 0.15);
+    --divider-color: rgba(0, 0, 0, 0.1);
+    --body-gradient-start: #e8eaf6;
+    --body-gradient-end: #f5f5f5;
+    --terminal-header-bg: #2d2d2d;
+    --terminal-border: #333;
+    --terminal-glow: rgba(63, 81, 181, 0.08);
+    --terminal-output: #ccc;
+    --terminal-title-color: #999;
+    --footer-copyright: #999;
+    --badge-bg: rgba(63, 81, 181, 0.1);
+    --icon-wrapper-bg: rgba(63, 81, 181, 0.08);
+    --btn-primary-shadow: rgba(63, 81, 181, 0.25);
+    --btn-primary-hover-shadow: rgba(63, 81, 181, 0.35);
+    --btn-primary-hover-bg: #3949ab;
+    --btn-secondary-hover-bg: #ddd;
+    --card-hover-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.12);
 
-    /* Code Block Colors */
-    --code-bg: #f5f5f5;
-    --code-border: rgba(0, 0, 0, 0.1);
-    --code-text: #24292e;
-    --code-comment: #6a737d;
-    --code-cmd: #005cc5;
-    --code-arg: #032f62;
-}
-
-:root {
-    /* ... existing vars ... */
-    /* Code Block Colors (Dark Default) */
-    --code-bg: #1e1e1e;
-    --code-border: rgba(255, 255, 255, 0.1);
-    --code-text: #d4d4d4;
-    --code-comment: #6a9955;
-    --code-cmd: #dcdcaa;
-    --code-arg: #9cdcfe;
+    /* Elevation Shadows */
+    --elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
+    --elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
+    --elevation-4: 0px 4px 10px 4px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 * {
@@ -89,7 +112,7 @@
 }
 
 body {
-    background: var(--bg-gradient);
+    background: radial-gradient(circle at 50% 0%, var(--body-gradient-start) 0%, var(--body-gradient-end) 60%);
     background-attachment: fixed;
     color: var(--md-sys-color-on-background);
     font-family: 'Roboto', sans-serif;
@@ -97,7 +120,6 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Typography */
@@ -119,47 +141,6 @@ a {
     padding: 0 24px;
 }
 
-/* Logo Styles */
-.logo-img {
-    height: 36px;
-    width: auto;
-    object-fit: contain;
-}
-
-.logo-section {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-}
-
-.logo-section:hover .logo-text {
-    opacity: 0.9;
-}
-
-/* Theme Toggle Button */
-.theme-toggle-btn {
-    background: none;
-    border: none;
-    color: var(--md-sys-color-on-surface-variant);
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.theme-toggle-btn:hover {
-    background-color: var(--surface-border);
-    color: var(--md-sys-color-on-surface);
-}
-
-.theme-icon {
-    font-size: 24px;
-}
-
 /* Top App Bar */
 .top-app-bar {
     position: fixed;
@@ -170,8 +151,7 @@ a {
     background-color: var(--app-bar-bg);
     backdrop-filter: blur(10px);
     z-index: 1000;
-    border-bottom: 1px solid var(--surface-border);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .app-bar-content {
@@ -226,7 +206,7 @@ a {
 }
 
 .icon-link:hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: var(--hover-overlay);
     color: var(--md-sys-color-on-surface);
 }
 
@@ -253,7 +233,7 @@ a {
 .hero-badge {
     display: inline-block;
     padding: 6px 12px;
-    background-color: rgba(92, 107, 192, 0.15);
+    background-color: var(--badge-bg);
     color: var(--md-sys-color-primary);
     border-radius: 16px;
     font-size: 13px;
@@ -304,13 +284,13 @@ a {
 .btn-primary {
     background-color: var(--md-sys-color-primary);
     color: var(--md-sys-color-on-primary);
-    box-shadow: 0 4px 12px rgba(92, 107, 192, 0.3);
+    box-shadow: 0 4px 12px var(--btn-primary-shadow);
 }
 
 .btn-primary:hover {
-    background-color: #4f5eb5;
+    background-color: var(--btn-primary-hover-bg);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(92, 107, 192, 0.4);
+    box-shadow: 0 6px 16px var(--btn-primary-hover-shadow);
 }
 
 .btn-secondary {
@@ -319,30 +299,30 @@ a {
 }
 
 .btn-secondary:hover {
-    background-color: #383838;
+    background-color: var(--btn-secondary-hover-bg);
 }
 
 /* Terminal Mockup */
 .terminal-window {
     background-color: var(--terminal-bg);
     border-radius: 12px;
-    border: 1px solid #333;
+    border: 1px solid var(--terminal-border);
     overflow: hidden;
     font-family: 'Consolas', 'Monaco', monospace;
     font-size: 14px;
     color: var(--terminal-text);
-    box-shadow: var(--elevation-4), 0 0 100px rgba(92, 107, 192, 0.1); /* Glow */
+    box-shadow: var(--elevation-4), 0 0 100px var(--terminal-glow); /* Glow */
     max-width: 500px;
     width: 100%;
     margin-left: auto;
 }
 
 .terminal-header {
-    background-color: #1a1a1a;
+    background-color: var(--terminal-header-bg);
     padding: 12px 16px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid var(--terminal-border);
 }
 
 .terminal-dot {
@@ -358,7 +338,7 @@ a {
 
 .terminal-title {
     margin-left: 12px;
-    color: #666;
+    color: var(--terminal-title-color);
     font-size: 12px;
 }
 
@@ -378,7 +358,7 @@ a {
 }
 
 .output {
-    color: #ccc;
+    color: var(--terminal-output);
     padding-left: 16px;
 }
 
@@ -410,7 +390,7 @@ a {
     border-radius: 24px; 
     padding: 32px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -418,12 +398,12 @@ a {
 
 .feature-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 12px -4px rgba(0, 0, 0, 0.4); /* Elevation 3 roughly */
-    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: var(--card-hover-shadow);
+    border-color: var(--card-border-hover);
 }
 
 .feature-icon-wrapper {
-    background-color: rgba(92, 107, 192, 0.1);
+    background-color: var(--icon-wrapper-bg);
     width: 56px;
     height: 56px;
     border-radius: 16px;
@@ -472,7 +452,7 @@ a {
 /* Footer (Matching Aniyomi) */
 .footer {
     padding: 40px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--border-color);
     margin-top: auto;
 }
 
@@ -499,7 +479,7 @@ a {
 }
 
 .footer-copyright {
-    color: #666;
+    color: var(--footer-copyright);
     font-size: 12px;
 }
 
@@ -528,7 +508,7 @@ a {
     left: max(0px, calc(50% - 700px)); /* Center within max-width */
     overflow-y: auto;
     padding: 32px 0 32px 24px;
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid var(--border-color);
     background-color: var(--md-sys-color-background); /* Ensure contrast */
     z-index: 100;
 }
@@ -571,12 +551,12 @@ a {
 }
 
 .sidebar-link:hover {
-    background-color: rgba(255, 255, 255, 0.04);
+    background-color: var(--hover-overlay);
     color: var(--md-sys-color-on-surface);
 }
 
 .sidebar-link.active {
-    background-color: rgba(92, 107, 192, 0.15);
+    background-color: var(--badge-bg);
     color: var(--md-sys-color-primary);
     border-left-color: var(--md-sys-color-primary);
     font-weight: 500;
@@ -637,40 +617,13 @@ h3 {
 
 .doc-divider {
     height: 1px;
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: var(--divider-color);
     border: none;
     margin: 48px 0;
 }
 
 /* Responsive */
 @media (max-width: 900px) {
-    .doc-content {
-        margin-left: 0;
-        padding-left: 24px;
-        padding-right: 24px;
-    }
-
-    .doc-sidebar {
-        display: none;
-    }
-}
-
-/* Code Blocks */
-pre {
-    background-color: var(--code-bg);
-    border: 1px solid var(--code-border);
-    border-radius: 8px;
-    padding: 16px;
-    overflow-x: auto;
-    margin: 16px 0 32px;
-    font-family: 'Consolas', 'Monaco', monospace;
-    font-size: 14px;
-    color: var(--code-text);
-}
-
-.code-comment { color: var(--code-comment); }
-.code-cmd { color: var(--code-cmd); }
-.code-arg { color: var(--code-arg); }
     .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
@@ -706,4 +659,49 @@ pre {
     .nav-links {
         display: none; /* Simple mobile nav hiding for now */
     }
+}
+
+/* ===== Theme Toggle Button ===== */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--md-sys-color-on-surface-variant);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 0;
+}
+
+.theme-toggle:hover {
+    background-color: var(--hover-overlay);
+    color: var(--md-sys-color-on-surface);
+}
+
+.theme-toggle .material-icons {
+    font-size: 22px;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:active .material-icons {
+    transform: rotate(30deg);
+}
+
+/* Show/hide icons based on theme */
+body.dark-theme .theme-toggle .icon-light { display: inline; }
+body.dark-theme .theme-toggle .icon-dark  { display: none;   }
+body.light-theme .theme-toggle .icon-light { display: none;   }
+body.light-theme .theme-toggle .icon-dark  { display: inline; }
+
+/* Smooth theme transition */
+body, body * {
+    transition: background-color 0.3s ease, color 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* Exclude the cursor blink and hover transforms from transition */
+.cursor, .btn, .feature-card, .feature-link .arrow {
+    transition: background-color 0.3s ease, color 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
