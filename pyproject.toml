@@ -45,10 +45,10 @@ web = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/vibescan"
-"Bug Tracker" = "https://github.com/yourusername/vibescan/issues"
-Documentation = "https://github.com/yourusername/vibescan#readme"
-"Source Code" = "https://github.com/yourusername/vibescan"
+Homepage = "https://github.com/AbinVarghexe/vibescan"
+"Bug Tracker" = "https://github.com/AbinVarghexe/vibescan/issues"
+Documentation = "https://github.com/AbinVarghexe/vibescan#readme"
+"Source Code" = "https://github.com/AbinVarghexe/vibescan"
 
 [project.scripts]
 vibescan = "vibescan.cli:main"
