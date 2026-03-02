@@ -166,17 +166,6 @@ VibeScan detected CRITICAL risks. Build failed.
 
 ## 🧪 Development
 
-### Running Tests
-
-```bash
-# Install dev dependencies
-pip install -e .
-pip install pytest pytest-mock responses
-
-# Run tests
-pytest tests/ -v
-```
-
 ### Project Structure
 
 ```
@@ -189,7 +178,6 @@ vibescan/
 │   └── checkers/
 │       ├── registry_checker.py   # Registry verification
 │       └── typosquat_checker.py  # Typosquatting detection
-├── tests/                  # Test suite
 ├── js-wrapper/            # Node.js wrapper
 └── setup.py               # Python package config
 ```
