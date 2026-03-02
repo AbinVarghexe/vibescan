@@ -111,6 +111,10 @@ body.light-theme {
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: radial-gradient(circle at 50% 0%, var(--body-gradient-start) 0%, var(--body-gradient-end) 60%);
     background-attachment: fixed;
@@ -606,7 +610,7 @@ a {
     font-size: 32px;
     margin: 48px 0 24px;
     color: var(--md-sys-color-on-surface);
-    scroll-margin-top: 100px; /* Offset for sticky header */
+    scroll-margin-top: 80px; /* Offset for sticky header */
 }
 
 h3 {

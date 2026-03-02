@@ -48,9 +48,9 @@
             <nav class="sidebar-nav">
                 <div class="nav-group">
                     <h4 class="nav-group-title">Links</h4>
-                    <a href="https://github.com/AbinVarghexe/vibescan/releases" class="sidebar-link">Download</a>
-                    <a href="https://github.com/AbinVarghexe/vibescan/releases" class="sidebar-link">Changelogs</a>
-                    <a href="https://github.com/AbinVarghexe/vibescan" class="sidebar-link">Contribute</a>
+                    <a href="https://github.com/AbinVarghexe/vibescan/releases" class="sidebar-link" target="_blank" rel="noopener noreferrer">Download</a>
+                    <a href="https://github.com/AbinVarghexe/vibescan/releases" class="sidebar-link" target="_blank" rel="noopener noreferrer">Changelogs</a>
+                    <a href="https://github.com/AbinVarghexe/vibescan" class="sidebar-link" target="_blank" rel="noopener noreferrer">Contribute</a>
                 </div>
                 
                 <div class="nav-group">
@@ -525,47 +525,7 @@ jobs:
             </article>
         </main>
 
-        <!-- Table of Contents (Right Sidebar) -->
-        <aside class="doc-toc">
-            <div class="toc-sticky">
-                <h4 class="toc-title">On this page</h4>
-                <ul class="toc-list">
-                    <li><a href="#installation-guide" class="toc-link">Installation guide</a>
-                        <ul class="toc-sublist">
-                            <li><a href="#downloading-vibescan" class="toc-sublink">Downloading VibeScan</a></li>
-                            <li><a href="#basic-usage" class="toc-sublink">Basic Usage</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#adding-series-to-your-library" class="toc-link">Workflow</a>
-                        <ul class="toc-sublist">
-                            <li><a href="#adding-series-to-your-library" class="toc-sublink">Implementing in Workflow</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#configuration" class="toc-link">Configuration</a>
-                        <ul class="toc-sublist">
-                            <li><a href="#cli-flags" class="toc-sublink">CLI Flags</a></li>
-                            <li><a href="#risk-scoring" class="toc-sublink">Risk Scoring</a></li>
-                            <li><a href="#scoring-factors" class="toc-sublink">Scoring Factors</a></li>
-                            <li><a href="#supported-files" class="toc-sublink">Supported Files</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#cicd-integration" class="toc-link">CI/CD Integration</a>
-                        <ul class="toc-sublist">
-                            <li><a href="#github-actions" class="toc-sublink">GitHub Actions</a></li>
-                            <li><a href="#gitlab-ci" class="toc-sublink">GitLab CI</a></li>
-                            <li><a href="#pre-commit-hook" class="toc-sublink">Pre-Commit</a></li>
-                            <li><a href="#docker-ci" class="toc-sublink">Docker</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#architecture" class="toc-link">Architecture</a>
-                        <ul class="toc-sublist">
-                            <li><a href="#module-overview" class="toc-sublink">Module Overview</a></li>
-                            <li><a href="#project-structure" class="toc-sublink">Project Structure</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </aside>
+
     </div>
 
     <!-- Theme Toggle + Copy Code Script -->
@@ -612,6 +572,42 @@ jobs:
                 }, 2000);
             });
         }
+
+        // Sidebar active state tracking
+        (function() {
+            const sidebarLinks = document.querySelectorAll('.sidebar-link[href^="#"]');
+            const sections = document.querySelectorAll('h2[id], h3[id]');
+            
+            function updateActiveLink() {
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (window.scrollY >= sectionTop) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('href').substring(1);
+                    if (href === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateActiveLink);
+            window.addEventListener('load', updateActiveLink);
+            
+            // Also update on click
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        })();
     </script>
 
 </body>
