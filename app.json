@@ -1,0 +1,32 @@
+{
+  "name": "VibeScan",
+  "description": "AI Dependency Security Scanner - Detects hallucinated dependencies and typosquatting",
+  "repository": "https://github.com/AbinVarghexe/vibescan",
+  "logo": "https://raw.githubusercontent.com/AbinVarghexe/vibescan/main/docs/logo.png",
+  "keywords": [
+    "security",
+    "dependencies",
+    "ai",
+    "scanner",
+    "python",
+    "npm"
+  ],
+  "env": {
+    "FLASK_ENV": {
+      "description": "Flask environment",
+      "value": "production"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "stack": "heroku-22"
+}

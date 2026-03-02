@@ -1,0 +1,125 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.md'
+      - 'docs/**'
+      - '.github/workflows/deploy-docs.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy-github-pages:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install MkDocs
+        run: |
+          pip install mkdocs mkdocs-material mkdocs-mermaid2-plugin
+
+      - name: Create MkDocs configuration
+        run: |
+          cat > mkdocs.yml << 'EOF'
+          site_name: VibeScan Documentation
+          site_description: AI Dependency Security Scanner
+          site_author: Abin Varghese
+          repo_url: https://github.com/${{ github.repository }}
+          repo_name: ${{ github.repository }}
+
+          theme:
+            name: material
+            palette:
+              - scheme: default
+                primary: deep purple
+                accent: purple
+            features:
+              - navigation.tabs
+              - navigation.sections
+              - navigation.expand
+              - search.highlight
+              - content.code.copy
+
+          nav:
+            - Home: README.md
+            - Quick Start: QUICKSTART.md
+            - For Students:
+              - Project Report: COLLEGE_PROJECT_README.md
+              - Code Documentation: CODE_DOCUMENTATION.md
+              - Presentation Guide: PRESENTATION_GUIDE.md
+              - Student Guide: STUDENT_GUIDE.md
+            - Deployment:
+              - Deployment Guide: DEPLOYMENT.md
+              - Streamlit Deploy: STREAMLIT_DEPLOY.md
+              - Automation: AUTOMATION.md
+            - Reference:
+              - Project Index: PROJECT_INDEX.md
+              - Project Summary: PROJECT_SUMMARY.md
+              - PRD: PRD.md
+              - Changelog: CHANGELOG.md
+
+          markdown_extensions:
+            - pymdownx.highlight:
+                anchor_linenums: true
+            - pymdownx.inlinehilite
+            - pymdownx.snippets
+            - pymdownx.superfences:
+                custom_fences:
+                  - name: mermaid
+                    class: mermaid
+                    format: !!python/name:mermaid2.fence_mermaid
+            - admonition
+            - pymdownx.details
+            - pymdownx.tabbed:
+                alternate_style: true
+            - tables
+            - attr_list
+            - md_in_html
+          EOF
+
+      - name: Build documentation
+        run: mkdocs build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          cname: vibescan.dev  # Optional: your custom domain
+
+  deploy-readthedocs:
+    name: Trigger ReadTheDocs Build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Trigger ReadTheDocs
+        run: |
+          curl -X POST \
+            -H "Authorization: Token ${{ secrets.READTHEDOCS_TOKEN }}" \
+            https://readthedocs.org/api/v3/projects/${{ secrets.READTHEDOCS_PROJECT }}/versions/latest/builds/
+
+  notify-docs-deployed:
+    name: Notify Documentation Deployed
+    runs-on: ubuntu-latest
+    needs: [deploy-github-pages]
+    if: success()
+    steps:
+      - name: Create summary
+        run: |
+          echo "### 📚 Documentation Deployed Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "View documentation at:" >> $GITHUB_STEP_SUMMARY
+          echo "- **GitHub Pages**: https://${{ github.repository_owner }}.github.io/vibescan/" >> $GITHUB_STEP_SUMMARY
+          echo "- **Repository**: https://github.com/${{ github.repository }}" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,99 @@
+name: Deploy Streamlit App
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'streamlit_app.py'
+      - 'vibescan/**'
+      - 'requirements.txt'
+      - '.github/workflows/deploy-streamlit.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy-streamlit-cloud:
+    name: Deploy to Streamlit Cloud
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Notify Streamlit Cloud
+        run: |
+          echo "### ⚡ Streamlit Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Streamlit Cloud will automatically detect and deploy changes from main branch." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Configure your app at: https://share.streamlit.io/" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Setup Steps:**" >> $GITHUB_STEP_SUMMARY
+          echo "1. Go to https://share.streamlit.io/" >> $GITHUB_STEP_SUMMARY
+          echo "2. Connect your GitHub account" >> $GITHUB_STEP_SUMMARY
+          echo "3. Select repository: \`${{ github.repository }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "4. Branch: \`main\`" >> $GITHUB_STEP_SUMMARY
+          echo "5. Main file: \`streamlit_app.py\`" >> $GITHUB_STEP_SUMMARY
+
+  deploy-huggingface:
+    name: Deploy to Hugging Face Spaces
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install huggingface-hub
+
+      - name: Create Hugging Face Space files
+        run: |
+          mkdir -p hf-space
+          cp streamlit_app.py hf-space/app.py
+          cp requirements.txt hf-space/requirements.txt
+          cp -r vibescan hf-space/
+          cat > hf-space/README.md << 'EOF'
+          ---
+          title: VibeScan
+          emoji: 🔍
+          colorFrom: purple
+          colorTo: blue
+          sdk: streamlit
+          sdk_version: 1.28.0
+          app_file: app.py
+          pinned: false
+          ---
+
+          # VibeScan - AI Dependency Security Scanner
+
+          Detects AI-generated package hallucinations and typosquatting attacks.
+          EOF
+
+      - name: Push to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          cd hf-space
+          git init
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Update VibeScan Space"
+          git push --force https://user:$HF_TOKEN@huggingface.co/spaces/${{ secrets.HF_SPACE_NAME }} main
+
+  notify-success:
+    name: Notify Streamlit Deployment
+    runs-on: ubuntu-latest
+    needs: [deploy-streamlit-cloud, deploy-huggingface]
+    if: success()
+    steps:
+      - name: Create summary
+        run: |
+          echo "### ✅ Streamlit Apps Deployed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Access your apps:" >> $GITHUB_STEP_SUMMARY
+          echo "- Streamlit Cloud: Check https://share.streamlit.io/" >> $GITHUB_STEP_SUMMARY
+          echo "- Hugging Face: https://huggingface.co/spaces/${{ secrets.HF_SPACE_NAME }}" >> $GITHUB_STEP_SUMMARY

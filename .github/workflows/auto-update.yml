@@ -1,0 +1,66 @@
+name: Auto Update Dependencies
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly on Sunday
+  workflow_dispatch:
+
+jobs:
+  update-dependencies:
+    name: Update Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Update Python dependencies
+        run: |
+          pip install --upgrade pip-tools
+          pip-compile --upgrade requirements.txt
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      - name: Update npm dependencies
+        working-directory: ./js-wrapper
+        run: |
+          npm update
+          npm audit fix
+
+      - name: Run tests
+        run: |
+          pip install -e ".[dev]"
+          pytest tests/ -v
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update dependencies'
+          title: '🔄 Auto Update Dependencies'
+          body: |
+            ## 🤖 Automated Dependency Update
+
+            This PR updates project dependencies to their latest compatible versions.
+
+            ### Changes
+            - Updated Python dependencies
+            - Updated npm dependencies
+            - Fixed security vulnerabilities (if any)
+
+            ### Testing
+            ✅ All tests pass
+
+            Please review and merge if everything looks good.
+          branch: auto-update-dependencies
+          delete-branch: true
+          labels: |
+            dependencies
+            automated
