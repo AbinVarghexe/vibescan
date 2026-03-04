@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeScan - Node.js Vulnerable Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #f5576c;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .node-badge {
+            display: inline-block;
+            background: #68a063;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px 5px;
+        }
+        
+        .warning-badge {
+            display: inline-block;
+            background: #ff4757;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .critical { color: #e74c3c; }
+        .warning { color: #f39c12; }
+        .safe { color: #2ecc71; }
+        .typo { color: #e67e22; }
+        
+        .content-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: #f5576c;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .vulnerability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .vulnerability-card {
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .vulnerability-card.typo {
+            border-left-color: #e67e22;
+        }
+        
+        .vulnerability-card.safe {
+            border-left-color: #2ecc71;
+        }
+        
+        .package-name {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        
+        .package-info {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .command-box {
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-size: 1.1em;
+        }
+        
+        .command-prompt {
+            color: #3498db;
+        }
+        
+        .scan-button {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.2em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 30px auto;
+            box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+            font-weight: bold;
+        }
+        
+        .scan-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(245, 87, 108, 0.6);
+        }
+        
+        .list-section {
+            margin: 25px 0;
+        }
+        
+        .list-section h3 {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            border-bottom: 2px solid #f5576c;
+            padding-bottom: 10px;
+        }
+        
+        .package-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .package-item {
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+        
+        .arrow {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        footer {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ VibeScan Node.js Demo</h1>
+            <div>
+                <span class="node-badge">📦 Node.js Application</span>
+                <span class="warning-badge">⚠️ INTENTIONALLY VULNERABLE ⚠️</span>
+            </div>
+            <p style="margin-top: 20px; color: #666; font-size: 1.2em;">
+                Testing VibeScan's detection of typosquatting and hallucinated npm packages
+            </p>
+        </div>
+        
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-label">Total Packages</div>
+                <div class="stat-number">47</div>
+                <div class="stat-label">Dependencies</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number critical">42</div>
+                <div class="stat-label">Critical Issues</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number typo">16</div>
+                <div class="stat-label">Typosquatting</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number warning">26</div>
+                <div class="stat-label">Hallucinated</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number safe">5</div>
+                <div class="stat-label">Safe Packages</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number critical" style="font-size: 2.5em;">92/100</div>
+                <div class="stat-label">Risk Score</div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="section-title">
+                <span>✅</span>
+                <span>Legitimate Packages (5)</span>
+            </div>
+            <div class="package-list">
+                <div class="package-item" style="border-left: 3px solid #2ecc71;">express ^4.18.2</div>
+                <div class="package-item" style="border-left: 3px solid #2ecc71;">axios ^1.6.0</div>
+                <div class="package-item" style="border-left: 3px solid #2ecc71;">dotenv ^16.3.1</div>
+                <div class="package-item" style="border-left: 3px solid #2ecc71;">cors ^2.8.5</div>
+                <div class="package-item" style="border-left: 3px solid #2ecc71;">nodemon ^3.0.1 (dev)</div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="section-title">
+                <span>⚠️</span>
+                <span>Typosquatting Attempts (16)</span>
+            </div>
+            <p style="color: #666; margin-bottom: 20px;">
+                Packages with names deceptively similar to popular packages:
+            </p>
+            <div class="vulnerability-grid">
+                <div class="vulnerability-card typo">
+                    <div class="package-name">expresss</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>express</strong></div>
+                    <div class="package-info">Type: Extra letter</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">expres</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>express</strong></div>
+                    <div class="package-info">Type: Missing letter</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">recat</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>react</strong></div>
+                    <div class="package-info">Type: Letter swap</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">lodsh</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>lodash</strong></div>
+                    <div class="package-info">Type: Missing letter</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">loodash</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>lodash</strong></div>
+                    <div class="package-info">Type: Extra letter</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">momnet</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>moment</strong></div>
+                    <div class="package-info">Type: Letter swap</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">axois</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>axios</strong></div>
+                    <div class="package-info">Type: Letter swap</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">chalkk</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>chalk</strong></div>
+                    <div class="package-info">Type: Extra letter</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">next-js</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>next</strong></div>
+                    <div class="package-info">Type: Wrong hyphenation</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">mongoose-db</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>mongoose</strong></div>
+                    <div class="package-info">Type: Extra suffix</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">tailwind-css</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>tailwindcss</strong></div>
+                    <div class="package-info">Type: Wrong hyphenation</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">prettier-format</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>prettier</strong></div>
+                    <div class="package-info">Type: Extra suffix</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">type-script</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>typescript</strong></div>
+                    <div class="package-info">Type: Wrong hyphenation</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">commander-js</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>commander</strong></div>
+                    <div class="package-info">Type: Extra suffix</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">esLint</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>eslint</strong></div>
+                    <div class="package-info">Type: Wrong case</div>
+                </div>
+                <div class="vulnerability-card typo">
+                    <div class="package-name">webpck</div>
+                    <div class="package-info"><span class="arrow">→</span> Should be: <strong>webpack</strong></div>
+                    <div class="package-info">Type: Missing letter</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="section-title">
+                <span>🚫</span>
+                <span>Hallucinated Packages (26)</span>
+            </div>
+            <p style="color: #666; margin-bottom: 20px;">
+                Non-existent packages that don't exist in the npm registry. These might be suggested by AI coding assistants:
+            </p>
+            <div class="package-list">
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">express-ultra-router</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">react-quantum-hooks</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">next-server-boost</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">axios-turbo-client</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">fastify-super-plugin</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">socket-magic-io</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">graphql-auto-resolver</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">mongodb-smart-connector</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">ai-rest-api</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">neural-middleware</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">quantum-state-manager</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">auto-api-generator</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">smart-database-orm</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">ml-request-optimizer</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">blockchain-validator</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">crypto-auth-jwt</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">axios-mock</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">react-dom-fake</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">auto-test-generator</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">smart-bundler</div>
+                <div class="package-item" style="border-left: 3px solid #e74c3c;">ai-linter</div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="section-title">
+                <span>🔍</span>
+                <span>How to Scan with VibeScan</span>
+            </div>
+            <p style="color: #666; margin-bottom: 15px; font-size: 1.1em;">
+                Run VibeScan from the vibescan root directory to detect all these issues:
+            </p>
+            <div class="command-box">
+<span class="command-prompt">$</span> vibescan node-demo-app/
+            </div>
+            <p style="margin-top: 20px; color: #666;">
+                VibeScan will analyze package.json and identify:
+            </p>
+            <ul style="margin-top: 15px; margin-left: 30px; color: #666; line-height: 1.8;">
+                <li>✓ Non-existent packages (26 hallucinations)</li>
+                <li>✓ Typosquatted package names (16 typos)</li>
+                <li>✓ Risk scores for each dependency</li>
+                <li>✓ Recommended actions</li>
+            </ul>
+            
+            <button class="scan-button" onclick="alert('Run: vibescan node-demo-app/ in your terminal')">
+                🔍 Run VibeScan Now
+            </button>
+        </div>
+        
+        <footer>
+            <h3 style="color: #f5576c; margin-bottom: 15px;">⚠️ About This Demo</h3>
+            <p style="color: #666; font-size: 1.1em; line-height: 1.6;">
+                This Node.js application intentionally includes <strong>42 vulnerable dependencies</strong> 
+                to demonstrate VibeScan's security analysis capabilities.<br>
+                <strong>Never use these dependencies in production!</strong>
+            </p>
+            <p style="margin-top: 20px; color: #999;">
+                📚 Learn more: <a href="https://github.com/AbinVarghexe/vibescan" style="color: #f5576c; font-weight: bold;">VibeScan GitHub</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

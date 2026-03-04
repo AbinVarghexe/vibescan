@@ -1,0 +1,203 @@
+================================================================================
+                    VIBESCAN SECURITY REPORT
+================================================================================
+
+Scan Path: D:\DEV\Projects\vibescan\test-app
+Scan Date: 2026-03-04 00:42:28
+VibeScan Version: 0.1.0
+
+================================================================================
+EXECUTIVE SUMMARY
+================================================================================
+
+  Total Packages Analyzed:    29
+  ✓ Safe Packages:            2 (6.9%)
+  ⚠ Suspicious Packages:      2 (6.9%)
+  ✗ Critical Issues:          25 (86.2%)
+
+  ⚠ OVERALL RISK LEVEL: CRITICAL
+
+================================================================================
+✓ SAFE DEPENDENCIES (2 packages)
+================================================================================
+
+  ✓ express (npm)
+    Version: ^4.18.0
+    Risk Score: 0/100
+
+  ✓ axios (npm)
+    Version: ^1.6.0
+    Risk Score: 0/100
+
+================================================================================
+⚠ SUSPICIOUS DEPENDENCIES (2 packages)
+================================================================================
+
+  ⚠ react-super-hooks (npm)
+    Version: 3.0.0
+    Risk Score: 20/100
+    • Very low download count (42 in last month) - suspicious popularity
+
+  ⚠ requests (pypi)
+    Version: 2.31.0
+    Risk Score: 20/100
+    • Very low download count (0 in last month) - suspicious popularity
+
+================================================================================
+✗ CRITICAL ISSUES (25 packages)
+================================================================================
+
+  ✗ _comment_typosquatting (npm)
+    Version: INTENTIONAL TYPOSQUATTING - Similar to popular packages
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ expresss (npm)
+    Version: 1.0.0
+    Risk Score: 60/100
+    • Name is deceptively similar to popular package 'express' (Typosquatting risk)
+
+  ✗ recat (npm)
+    Version: 18.0.0
+    Risk Score: 65/100
+    • Name is deceptively similar to popular package 'react' (Typosquatting risk)
+    • Low download count (132 in last month)
+
+  ✗ lodsh (npm)
+    Version: 4.17.0
+    Risk Score: 80/100
+    • Name is deceptively similar to popular package 'lodash' (Typosquatting risk)
+    • Very low download count (0 in last month) - suspicious popularity
+
+  ✗ momnet (npm)
+    Version: 2.29.0
+    Risk Score: 65/100
+    • Name is deceptively similar to popular package 'moment' (Typosquatting risk)
+    • Low download count (107 in last month)
+
+  ✗ axois (npm)
+    Version: 1.5.0
+    Risk Score: 60/100
+    • Name is deceptively similar to popular package 'axios' (Typosquatting risk)
+
+  ✗ _comment_hallucinated (npm)
+    Version: INTENTIONAL HALLUCINATED PACKAGES - Non-existent
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ express-quantum-router (npm)
+    Version: 2.1.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ ai-frontend-framework (npm)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ neural-state-manager (npm)
+    Version: 4.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ magic-http-client (npm)
+    Version: 2.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ Flask (pypi)
+    Version: 3.0.0
+    Risk Score: 80/100
+    • Name is deceptively similar to popular package 'flask' (Typosquatting risk)
+    • Very low download count (0 in last month) - suspicious popularity
+
+  ✗ reqeusts (pypi)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+    • Name is deceptively similar to popular package 'requests' (Typosquatting risk)
+
+  ✗ djago (pypi)
+    Version: 2.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+    • Name is deceptively similar to popular package 'django' (Typosquatting risk)
+
+  ✗ numpyy (pypi)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+    • Name is deceptively similar to popular package 'numpy' (Typosquatting risk)
+
+  ✗ pandsa (pypi)
+    Version: 0.5.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+    • Name is deceptively similar to popular package 'pandas' (Typosquatting risk)
+
+  ✗ flsk (pypi)
+    Version: 1.2.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+    • Name is deceptively similar to popular package 'flask' (Typosquatting risk)
+
+  ✗ pythonrequest (pypi)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ flask-super-auth (pypi)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ secure-web-framework (pypi)
+    Version: 2.1.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ ai-data-processor (pypi)
+    Version: 3.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ magic-database-connector (pypi)
+    Version: 1.5.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ ultra-fast-api (pypi)
+    Version: 2.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ quantum-validator (pypi)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ neural-web-engine (pypi)
+    Version: 0.9.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+================================================================================
+RECOMMENDATIONS
+================================================================================
+
+1. ✗ REMOVE CRITICAL PACKAGES IMMEDIATELY
+   These packages pose serious security risks and should be removed.
+
+2. ⚠ REVIEW SUSPICIOUS PACKAGES
+   Manually verify these packages before use.
+
+3. ✓ INTEGRATE VIBESCAN INTO CI/CD
+   Add VibeScan to your build pipeline to catch issues early.
+
+4. 🔍 REGULAR SECURITY AUDITS
+   Run VibeScan before every deployment.
+
+================================================================================
+Report generated by VibeScan v0.1.0
+Documentation: https://github.com/AbinVarghexe/vibescan
+================================================================================

@@ -1,0 +1,311 @@
+================================================================================
+                    VIBESCAN SECURITY REPORT
+================================================================================
+
+Scan Path: D:\DEV\Projects\vibescan\node-demo-app
+Scan Date: 2026-03-04 00:44:47
+VibeScan Version: 0.1.0
+
+================================================================================
+EXECUTIVE SUMMARY
+================================================================================
+
+  Total Packages Analyzed:    51
+  ✓ Safe Packages:            8 (15.7%)
+  ⚠ Suspicious Packages:      3 (5.9%)
+  ✗ Critical Issues:          40 (78.4%)
+
+  ⚠ OVERALL RISK LEVEL: CRITICAL
+
+================================================================================
+✓ SAFE DEPENDENCIES (8 packages)
+================================================================================
+
+  ✓ express (npm)
+    Version: ^4.18.2
+    Risk Score: 0/100
+
+  ✓ axios (npm)
+    Version: ^1.6.0
+    Risk Score: 0/100
+
+  ✓ dotenv (npm)
+    Version: ^16.3.1
+    Risk Score: 0/100
+
+  ✓ cors (npm)
+    Version: ^2.8.5
+    Risk Score: 0/100
+
+  ✓ axios-mock (npm)
+    Version: 1.0.0
+    Risk Score: 5/100
+    • Low download count (350 in last month)
+
+  ✓ prettier-format (npm)
+    Version: 2.8.0
+    Risk Score: 0/100
+
+  ✓ nodemon (npm)
+    Version: ^3.0.1
+    Risk Score: 0/100
+
+  ✓ ai-linter (npm)
+    Version: 1.0.0
+    Risk Score: 5/100
+    • Low download count (101 in last month)
+
+================================================================================
+⚠ SUSPICIOUS DEPENDENCIES (3 packages)
+================================================================================
+
+  ⚠ next-js (npm)
+    Version: 13.0.0
+    Risk Score: 20/100
+    • Very low download count (0 in last month) - suspicious popularity
+
+  ⚠ auto-api-generator (npm)
+    Version: 3.0.0
+    Risk Score: 20/100
+    • Very low download count (6 in last month) - suspicious popularity
+
+  ⚠ bable (npm)
+    Version: 7.0.0
+    Risk Score: 20/100
+    • Very low download count (0 in last month) - suspicious popularity
+
+================================================================================
+✗ CRITICAL ISSUES (40 packages)
+================================================================================
+
+  ✗ _comment_legitimate (npm)
+    Version: LEGITIMATE PACKAGES - These are real and safe
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ _comment_typosquatting_1 (npm)
+    Version: TYPOSQUATTING - Common typos of popular packages
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ expresss (npm)
+    Version: 1.0.0
+    Risk Score: 60/100
+    • Name is deceptively similar to popular package 'express' (Typosquatting risk)
+
+  ✗ expres (npm)
+    Version: 1.0.0
+    Risk Score: 60/100
+    • Name is deceptively similar to popular package 'express' (Typosquatting risk)
+
+  ✗ recat (npm)
+    Version: 18.0.0
+    Risk Score: 65/100
+    • Name is deceptively similar to popular package 'react' (Typosquatting risk)
+    • Low download count (132 in last month)
+
+  ✗ react-dom-fake (npm)
+    Version: 18.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+    • Name is deceptively similar to popular package 'react-dom' (Typosquatting risk)
+
+  ✗ lodsh (npm)
+    Version: 4.17.0
+    Risk Score: 80/100
+    • Name is deceptively similar to popular package 'lodash' (Typosquatting risk)
+    • Very low download count (0 in last month) - suspicious popularity
+
+  ✗ loodash (npm)
+    Version: 4.17.0
+    Risk Score: 65/100
+    • Name is deceptively similar to popular package 'lodash' (Typosquatting risk)
+    • Low download count (551 in last month)
+
+  ✗ momnet (npm)
+    Version: 2.29.0
+    Risk Score: 65/100
+    • Name is deceptively similar to popular package 'moment' (Typosquatting risk)
+    • Low download count (107 in last month)
+
+  ✗ axois (npm)
+    Version: 1.5.0
+    Risk Score: 60/100
+    • Name is deceptively similar to popular package 'axios' (Typosquatting risk)
+
+  ✗ chalkk (npm)
+    Version: 5.0.0
+    Risk Score: 80/100
+    • Name is deceptively similar to popular package 'chalk' (Typosquatting risk)
+    • Very low download count (4 in last month) - suspicious popularity
+
+  ✗ _comment_typosquatting_2 (npm)
+    Version: More sophisticated typosquatting
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ mongoose-db (npm)
+    Version: 7.0.0
+    Risk Score: 80/100
+    • Name is deceptively similar to popular package 'mongoose' (Typosquatting risk)
+    • Very low download count (17 in last month) - suspicious popularity
+
+  ✗ tailwind-css (npm)
+    Version: 3.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+    • Name is deceptively similar to popular package 'tailwindcss' (Typosquatting risk)
+
+  ✗ type-script (npm)
+    Version: 5.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+    • Name is deceptively similar to popular package 'typescript' (Typosquatting risk)
+
+  ✗ commander-js (npm)
+    Version: 11.0.0
+    Risk Score: 80/100
+    • Name is deceptively similar to popular package 'commander' (Typosquatting risk)
+    • Very low download count (63 in last month) - suspicious popularity
+
+  ✗ _comment_hallucinated_1 (npm)
+    Version: AI HALLUCINATED PACKAGES - Non-existent
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ express-ultra-router (npm)
+    Version: 2.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ react-quantum-hooks (npm)
+    Version: 3.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ next-server-boost (npm)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ axios-turbo-client (npm)
+    Version: 2.5.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ fastify-super-plugin (npm)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ socket-magic-io (npm)
+    Version: 4.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ graphql-auto-resolver (npm)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ mongodb-smart-connector (npm)
+    Version: 3.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ _comment_hallucinated_2 (npm)
+    Version: More AI-style package names
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ ai-rest-api (npm)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ neural-middleware (npm)
+    Version: 2.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ quantum-state-manager (npm)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ smart-database-orm (npm)
+    Version: 2.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ ml-request-optimizer (npm)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ blockchain-validator (npm)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ crypto-auth-jwt (npm)
+    Version: 2.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ _comment_dev_legitimate (npm)
+    Version: Legitimate dev dependencies
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ _comment_dev_typosquatting (npm)
+    Version: Typosquatting in dev deps
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ esLint (npm)
+    Version: 8.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+    • Name is deceptively similar to popular package 'eslint' (Typosquatting risk)
+
+  ✗ webpck (npm)
+    Version: 5.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ _comment_dev_hallucinated (npm)
+    Version: Hallucinated dev packages
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ auto-test-generator (npm)
+    Version: 1.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+  ✗ smart-bundler (npm)
+    Version: 2.0.0
+    Risk Score: 100/100
+    • Package does not exist in registry (Likely AI Hallucination/Slopsquat target)
+
+================================================================================
+RECOMMENDATIONS
+================================================================================
+
+1. ✗ REMOVE CRITICAL PACKAGES IMMEDIATELY
+   These packages pose serious security risks and should be removed.
+
+2. ⚠ REVIEW SUSPICIOUS PACKAGES
+   Manually verify these packages before use.
+
+3. ✓ INTEGRATE VIBESCAN INTO CI/CD
+   Add VibeScan to your build pipeline to catch issues early.
+
+4. 🔍 REGULAR SECURITY AUDITS
+   Run VibeScan before every deployment.
+
+================================================================================
+Report generated by VibeScan v0.1.0
+Documentation: https://github.com/AbinVarghexe/vibescan
+================================================================================

@@ -1,0 +1,20 @@
+# Legitimate packages
+Flask==3.0.0
+requests==2.31.0
+
+# INTENTIONAL TYPOSQUATTING ATTACKS - These are similar to popular packages!
+reqeusts==1.0.0
+djago==2.0.0
+numpyy==1.0.0
+pandsa==0.5.0
+flsk==1.2.0
+pythonrequest==1.0.0
+
+# INTENTIONAL HALLUCINATED DEPENDENCIES - Non-existent packages
+flask-super-auth==1.0.0
+secure-web-framework==2.1.0
+ai-data-processor==3.0.0
+magic-database-connector==1.5.0
+ultra-fast-api==2.0.0
+quantum-validator==1.0.0
+neural-web-engine==0.9.0

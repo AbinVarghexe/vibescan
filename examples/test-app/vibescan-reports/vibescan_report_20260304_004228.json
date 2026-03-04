@@ -1,0 +1,288 @@
+{
+  "scan_info": {
+    "timestamp": "2026-03-04 00:42:28",
+    "scan_path": "D:\\DEV\\Projects\\vibescan\\test-app",
+    "vibescan_version": "0.1.0",
+    "total_packages": 29
+  },
+  "summary": {
+    "safe": 2,
+    "suspicious": 2,
+    "critical": 25,
+    "risk_level": "CRITICAL"
+  },
+  "packages": {
+    "safe": [
+      {
+        "name": "express",
+        "version": "^4.18.0",
+        "ecosystem": "npm",
+        "score": 0,
+        "reasons": []
+      },
+      {
+        "name": "axios",
+        "version": "^1.6.0",
+        "ecosystem": "npm",
+        "score": 0,
+        "reasons": []
+      }
+    ],
+    "suspicious": [
+      {
+        "name": "react-super-hooks",
+        "version": "3.0.0",
+        "ecosystem": "npm",
+        "score": 20,
+        "reasons": [
+          "Very low download count (42 in last month) - suspicious popularity"
+        ]
+      },
+      {
+        "name": "requests",
+        "version": "2.31.0",
+        "ecosystem": "pypi",
+        "score": 20,
+        "reasons": [
+          "Very low download count (0 in last month) - suspicious popularity"
+        ]
+      }
+    ],
+    "critical": [
+      {
+        "name": "_comment_typosquatting",
+        "version": "INTENTIONAL TYPOSQUATTING - Similar to popular packages",
+        "ecosystem": "npm",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "expresss",
+        "version": "1.0.0",
+        "ecosystem": "npm",
+        "score": 60,
+        "reasons": [
+          "Name is deceptively similar to popular package 'express' (Typosquatting risk)"
+        ]
+      },
+      {
+        "name": "recat",
+        "version": "18.0.0",
+        "ecosystem": "npm",
+        "score": 65,
+        "reasons": [
+          "Name is deceptively similar to popular package 'react' (Typosquatting risk)",
+          "Low download count (132 in last month)"
+        ]
+      },
+      {
+        "name": "lodsh",
+        "version": "4.17.0",
+        "ecosystem": "npm",
+        "score": 80,
+        "reasons": [
+          "Name is deceptively similar to popular package 'lodash' (Typosquatting risk)",
+          "Very low download count (0 in last month) - suspicious popularity"
+        ]
+      },
+      {
+        "name": "momnet",
+        "version": "2.29.0",
+        "ecosystem": "npm",
+        "score": 65,
+        "reasons": [
+          "Name is deceptively similar to popular package 'moment' (Typosquatting risk)",
+          "Low download count (107 in last month)"
+        ]
+      },
+      {
+        "name": "axois",
+        "version": "1.5.0",
+        "ecosystem": "npm",
+        "score": 60,
+        "reasons": [
+          "Name is deceptively similar to popular package 'axios' (Typosquatting risk)"
+        ]
+      },
+      {
+        "name": "_comment_hallucinated",
+        "version": "INTENTIONAL HALLUCINATED PACKAGES - Non-existent",
+        "ecosystem": "npm",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "express-quantum-router",
+        "version": "2.1.0",
+        "ecosystem": "npm",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "ai-frontend-framework",
+        "version": "1.0.0",
+        "ecosystem": "npm",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "neural-state-manager",
+        "version": "4.0.0",
+        "ecosystem": "npm",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "magic-http-client",
+        "version": "2.0.0",
+        "ecosystem": "npm",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "Flask",
+        "version": "3.0.0",
+        "ecosystem": "pypi",
+        "score": 80,
+        "reasons": [
+          "Name is deceptively similar to popular package 'flask' (Typosquatting risk)",
+          "Very low download count (0 in last month) - suspicious popularity"
+        ]
+      },
+      {
+        "name": "reqeusts",
+        "version": "1.0.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)",
+          "Name is deceptively similar to popular package 'requests' (Typosquatting risk)"
+        ]
+      },
+      {
+        "name": "djago",
+        "version": "2.0.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)",
+          "Name is deceptively similar to popular package 'django' (Typosquatting risk)"
+        ]
+      },
+      {
+        "name": "numpyy",
+        "version": "1.0.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)",
+          "Name is deceptively similar to popular package 'numpy' (Typosquatting risk)"
+        ]
+      },
+      {
+        "name": "pandsa",
+        "version": "0.5.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)",
+          "Name is deceptively similar to popular package 'pandas' (Typosquatting risk)"
+        ]
+      },
+      {
+        "name": "flsk",
+        "version": "1.2.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)",
+          "Name is deceptively similar to popular package 'flask' (Typosquatting risk)"
+        ]
+      },
+      {
+        "name": "pythonrequest",
+        "version": "1.0.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "flask-super-auth",
+        "version": "1.0.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "secure-web-framework",
+        "version": "2.1.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "ai-data-processor",
+        "version": "3.0.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "magic-database-connector",
+        "version": "1.5.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "ultra-fast-api",
+        "version": "2.0.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "quantum-validator",
+        "version": "1.0.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      },
+      {
+        "name": "neural-web-engine",
+        "version": "0.9.0",
+        "ecosystem": "pypi",
+        "score": 100,
+        "reasons": [
+          "Package does not exist in registry (Likely AI Hallucination/Slopsquat target)"
+        ]
+      }
+    ]
+  }
+}
