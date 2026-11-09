@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/logo.png" alt="VibeScan logo" title="VibeScan logo" width="250"/>
+<img src="assets/banner.svg" alt="VibeScan Banner" width="100%"/>
 
 # VibeScan
 

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 440" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090514"/>
+      <stop offset="50%" stop-color="#140a2b"/>
+      <stop offset="100%" stop-color="#05030a"/>
+    </linearGradient>
+    <linearGradient id="purple-shield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+    <linearGradient id="radar-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <pattern id="matrix-grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="18" cy="18" r="1" fill="#4c1d95" opacity="0.5"/>
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#2e1065" stroke-width="0.7" opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="440" fill="url(#bg)"/>
+  <rect width="1280" height="440" fill="url(#matrix-grid)"/>
+
+  <!-- Left Header Information -->
+  <g transform="translate(80, 70)">
+    <!-- Security Pill Badge -->
+    <rect x="0" y="0" width="280" height="32" rx="16" fill="#2e1065" stroke="#7c3aed" stroke-width="1.2"/>
+    <circle cx="16" cy="16" r="4" fill="#a78bfa"/>
+    <text x="32" y="21" fill="#c4b5fd" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" letter-spacing="1">SUPPLY CHAIN SECURITY • AI AUDIT</text>
+
+    <!-- Main Title -->
+    <text x="0" y="85" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="50" font-weight="900" letter-spacing="-1">VibeScan</text>
+    <text x="0" y="132" fill="#a78bfa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="40" font-weight="800" letter-spacing="-1">AI Dependency Guard</text>
+
+    <!-- Subtitle -->
+    <text x="0" y="172" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400">
+      Pre-Publish Detection of AI-Hallucinated Packages, Typosquatting &amp; Slopsquatting
+    </text>
+
+    <!-- Badges -->
+    <g transform="translate(0, 210)">
+      <rect x="0" y="0" width="115" height="28" rx="6" fill="#1e113a" stroke="#4c1d95"/>
+      <text x="57" y="18" fill="#e9d5ff" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle">PyPI Verified</text>
+
+      <rect x="125" y="0" width="110" height="28" rx="6" fill="#1e113a" stroke="#4c1d95"/>
+      <text x="180" y="18" fill="#e9d5ff" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle">NPM Registry</text>
+
+      <rect x="245" y="0" width="130" height="28" rx="6" fill="#1e113a" stroke="#4c1d95"/>
+      <text x="310" y="18" fill="#e9d5ff" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle">Risk Scoring 0-100</text>
+    </g>
+  </g>
+
+  <!-- Right Visual: Scan Terminal Window -->
+  <g transform="translate(700, 50)">
+    <!-- Terminal Container -->
+    <rect x="0" y="0" width="500" height="340" rx="16" fill="#0b0817" stroke="#2e1065" stroke-width="1.8"/>
+    
+    <!-- Title Bar -->
+    <path d="M 0 16 Q 0 0 16 0 L 484 0 Q 500 0 500 16 L 500 40 L 0 40 Z" fill="#130d26"/>
+    <circle cx="22" cy="20" r="5" fill="#ef4444"/>
+    <circle cx="38" cy="20" r="5" fill="#f59e0b"/>
+    <circle cx="54" cy="20" r="5" fill="#10b981"/>
+    <text x="250" y="25" fill="#a78bfa" font-family="monospace" font-size="12" font-weight="600" text-anchor="middle">vibescan --project .</text>
+
+    <!-- Scan Results -->
+    <g transform="translate(24, 60)">
+      <!-- Output Line 1 -->
+      <text x="0" y="15" fill="#a78bfa" font-family="monospace" font-size="12">[+] Scanning dependencies across package.json &amp; requirements.txt...</text>
+
+      <!-- Threat Alert 1 -->
+      <g transform="translate(0, 30)">
+        <rect x="0" y="0" width="452" height="52" rx="6" fill="#2d0a1b" stroke="#f43f5e" stroke-width="1.2"/>
+        <text x="16" y="22" fill="#fda4af" font-family="monospace" font-size="12" font-weight="700">CRITICAL: Hallucinated Package Detected!</text>
+        <text x="16" y="40" fill="#f43f5e" font-family="monospace" font-size="11">pkg: `fastapi-jwt-auth-v2` [Not found on PyPI • Risk: 98/100]</text>
+      </g>
+
+      <!-- Threat Alert 2 -->
+      <g transform="translate(0, 92)">
+        <rect x="0" y="0" width="452" height="52" rx="6" fill="#281a05" stroke="#f59e0b" stroke-width="1.2"/>
+        <text x="16" y="22" fill="#fde68a" font-family="monospace" font-size="12" font-weight="700">WARNING: Potential Typosquatting Target</text>
+        <text x="16" y="40" fill="#fbbf24" font-family="monospace" font-size="11">pkg: `requsts` resembles `requests` [Age: 2 days • Risk: 85/100]</text>
+      </g>
+
+      <!-- Clean Item 3 -->
+      <g transform="translate(0, 154)">
+        <rect x="0" y="0" width="452" height="42" rx="6" fill="#061c14" stroke="#10b981" stroke-width="1"/>
+        <text x="16" y="26" fill="#6ee7b7" font-family="monospace" font-size="11">✓ Verified: `scikit-learn==1.4.0` [Safe • Risk: 0/100]</text>
+      </g>
+
+      <!-- Summary Badge -->
+      <g transform="translate(0, 206)">
+        <rect x="0" y="0" width="452" height="48" rx="6" fill="#130d26" stroke="#3b1d75"/>
+        <text x="16" y="20" fill="#c4b5fd" font-family="monospace" font-size="11" font-weight="700">Audit Status: 2 Anomalies Blocked</text>
+        <text x="16" y="36" fill="#94a3b8" font-family="monospace" font-size="10">CI Gate: Exit code 1 returned. Slopsquatting build halted.</text>
+      </g>
+    </g>
+  </g>
+</svg>
